@@ -1,0 +1,27 @@
+<ul webc:if="this.fromData" class="media-gallery">
+  <li>
+    Ok it looks like a list,
+    but it <em>could be</em> a media gallery…
+  </li>
+  <li webc:for="item of this.fromData">
+    <code @text="item.img"></code> —
+    <span @text="item.alt"></span>
+  </li>
+</ul>
+<p webc:else class="media-gallery">
+  Oh no! There's no data to render!!!
+</p>
+
+<style webc:keep>
+  media-gallery {
+    border: thick dotted green;
+    display: block;
+  }
+
+  .media-gallery {
+    background: var(--error, lightCyan);
+    padding: 1lh;
+  }
+
+  p { --error: pink; }
+</style>

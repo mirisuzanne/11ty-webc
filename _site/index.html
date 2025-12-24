@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebC issue</title>
+</head>
+<body>
+  <nav>
+    <a href="/">home</a>
+    <a href="/loop/">loop</a>
+  </nav>
+  
+  <main><h1>This is a markdown file</h1>
+<p>The first issue is that components
+with private <code>@</code>-prefixed attributes
+aren't recognized as HTML…</p>
+<p>&lt;media-gallery :@from-data="this.gallery"&gt;</p>
+<p>Removing the <code>@</code> sign,
+the component is rendered --
+but inside a paragraph!
+That's a markdown issue.
+It happens with all inline-default elements:</p>
+<p><media-gallery from-data="[object Object],[object Object],[object Object],[object Object]"><ul class="media-gallery">
+  <li>
+    Ok it looks like a list,
+    but it <em>could be</em> a media gallery…
+  </li>
+  <li>
+    <code>example/first.jpg</code> —
+    <span>We don't need to actually use images here</span>
+  </li>
+<li>
+    <code>example/second.jpg</code> —
+    <span>Using page-specific data is all that matters</span>
+  </li>
+<li>
+    <code>example/third.jpg</code> —
+    <span>In order to demonstrate this issue</span>
+  </li>
+<li>
+    <code>example/fourth.jpg</code> —
+    <span>The media gallery concept is just one use-case</span>
+  </li>
+</ul>
+
+
+<style>
+  media-gallery {
+    border: thick dotted green;
+    display: block;
+  }
+
+  .media-gallery {
+    background: var(--error, lightCyan);
+    padding: 1lh;
+  }
+
+  p { --error: pink; }
+</style>
+</media-gallery></p>
+<p><my-element>this is &lt;my-element&gt; wrapped in a paragraph</my-element></p>
+<p><span>it does the same with a &lt;span&gt; or other inline HTML</span></p>
+<p>INSTEAD, we can wrap our webc
+in a <code>&lt;figure&gt;</code> to get the desired output.
+Markdown-it knows this is block-level HTML,
+and it's not wrapped:</p>
+<figure>
+  <media-gallery><ul class="media-gallery">
+  <li>
+    Ok it looks like a list,
+    but it <em>could be</em> a media gallery…
+  </li>
+  <li>
+    <code>example/first.jpg</code> —
+    <span>We don't need to actually use images here</span>
+  </li>
+<li>
+    <code>example/second.jpg</code> —
+    <span>Using page-specific data is all that matters</span>
+  </li>
+<li>
+    <code>example/third.jpg</code> —
+    <span>In order to demonstrate this issue</span>
+  </li>
+<li>
+    <code>example/fourth.jpg</code> —
+    <span>The media gallery concept is just one use-case</span>
+  </li>
+</ul>
+
+
+<style>
+  media-gallery {
+    border: thick dotted green;
+    display: block;
+  }
+
+  .media-gallery {
+    background: var(--error, lightCyan);
+    padding: 1lh;
+  }
+
+  p { --error: pink; }
+</style>
+</media-gallery>
+</figure>
+<p>This page has to be parsed as <code>md</code> and not <code>webc,md</code> --
+because we need markdown to escape characters in a code-block
+before webc gets ahold of it:</p>
+<pre><code class="language-html">&lt;!-- this is a code block and should not render --&gt;
+&lt;figure&gt;
+  &lt;media-gallery :@from-data="this.gallery"&gt;&lt;/media-gallery&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>It all works great!
+Until we access this same page
+inside a <a href="/loop/">loop</a>,
+there's no <code>gallery</code> data anyway!</p>
+</main>
+
+
+</body>
+</html>

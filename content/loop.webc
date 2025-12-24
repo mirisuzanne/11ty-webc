@@ -1,0 +1,27 @@
+---
+layout: base
+as: raw
+eleventyExcludeFromCollections: true
+eleventyImport:
+  collections: ["example"]
+---
+
+<p>
+  Imagine this a an RSS feed,
+  looping over articles…
+</p>
+
+<hr>
+
+<article
+  webc:for="item of collections.example"
+  @html="item.content"
+></article>
+
+<hr>
+
+<p>
+  This works the same
+  if we use <code>@raw</code> in the loop,
+  and <code>@html</code> in the layout.
+</p>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebC issue</title>
+</head>
+<body>
+  <nav>
+    <a href="/">home</a>
+    <a href="/loop/">loop</a>
+  </nav>
+  <main
+    webc:if="this.as === 'raw'"
+    @raw="this.content"
+  ></main>
+  <main
+    webc:else
+    @html="this.content"
+  ></main>
+</body>
+</html>
