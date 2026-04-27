@@ -23,4 +23,11 @@ before being rendered as webC.
   <media-gallery :@from-data="this.gallery"></media-gallery>
 </figure>
 
+```html
+<!-- this is a code block and should not render -->
+<figure>
+  <media-gallery :@from-data="this.gallery"></media-gallery>
+</figure>
+```
+
 This finally solves the issue I've been having!

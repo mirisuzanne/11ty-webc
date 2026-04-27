@@ -132,6 +132,11 @@ before being rendered as webC.</p>
 </style>
 </media-gallery>
 </figure>
+<pre><code class="language-html">&lt;!-- this is a code block and should not render --&gt;
+&lt;figure&gt;
+  &lt;media-gallery :@from-data="this.gallery"&gt;&lt;/media-gallery&gt;
+&lt;/figure&gt;
+</code></pre>
 <p>This finally solves the issue I've been having!</p>
 
   
