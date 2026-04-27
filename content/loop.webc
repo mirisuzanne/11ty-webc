@@ -1,27 +1,33 @@
 ---
 layout: base
 as: raw
+md: true
 eleventyExcludeFromCollections: true
 eleventyImport:
   collections: ["example"]
 ---
 
-<p>
-  Imagine this a an RSS feed,
-  looping over articles…
-</p>
+Imagine this a an RSS feed,
+looping over articles…
 
-<hr>
+<article webc:for="item of collections.example">
+  <hr>
+  <h2 @html="item.data.title"></h2>
+  <div
+    webc:nokeep
+    webc:if="item.data.md"
+    @raw="item.content"
+  ></div>
+  <div
+    webc:nokeep
+    webc:else
+    @html="item.content"
+  ></div>
+</article>
 
-<article
-  webc:for="item of collections.example"
-  @html="item.content"
-></article>
+---
 
-<hr>
 
-<p>
-  This works the same
-  if we use <code>@raw</code> in the loop,
-  and <code>@html</code> in the layout.
-</p>
+The original issue is the same
+if we use `@raw` or `@html` in the layout --
+But the fix requires `raw` output.

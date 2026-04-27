@@ -7,18 +7,17 @@
 </head>
 <body>
   <nav>
-    <a href="/">home</a>
+    <a href="/">index.md</a>
+    <a href="/test/">test.webc</a>
     <a href="/loop/">loop</a>
   </nav>
-  <main><p>
-  Imagine this a an RSS feed,
-  looping over articles…
-</p>
-
-<hr>
-
-<article><h1>This is a markdown file</h1>
-<p>The first issue is that components
+  <main><p>Imagine this a an RSS feed,
+looping over articles…</p>
+<article>
+  <hr>
+  <h2>index.md</h2>
+  
+  <p>The first issue is that components
 with private <code>@</code>-prefixed attributes
 aren't recognized as HTML…</p>
 <p>&lt;media-gallery :@from-data="this.gallery"&gt;</p>
@@ -81,19 +80,66 @@ before webc gets ahold of it:</p>
   &lt;media-gallery :@from-data="this.gallery"&gt;&lt;/media-gallery&gt;
 &lt;/figure&gt;
 </code></pre>
-<p>It all works great!
-Until we access this same page
+<p>It all works great!</p>
+<p>…&nbsp;Until we access this same page
 inside a <a href="/loop/">loop</a>,
-there's no <code>gallery</code> data anyway!</p>
+there's no <code>this.gallery</code> data available.</p>
+
 </article>
+<article>
+  <hr>
+  <h2>test.webc</h2>
+  <p>Since <code>data.md === true</code>,
+this <code>webc</code> file will pre-process as markdown first,
+before being rendered as webC.</p>
+<figure>
+  <media-gallery><ul class="media-gallery">
+  <li>
+    Ok it looks like a list,
+    but it <em>could be</em> a media gallery…
+  </li>
+  <li>
+    <code>example/first.jpg</code> —
+    <span>We don't need to actually use images here</span>
+  </li>
+<li>
+    <code>example/second.jpg</code> —
+    <span>Using page-specific data is all that matters</span>
+  </li>
+<li>
+    <code>example/third.jpg</code> —
+    <span>In order to demonstrate this issue</span>
+  </li>
+<li>
+    <code>example/fourth.jpg</code> —
+    <span>The media gallery concept is just one use-case</span>
+  </li>
+</ul>
 
+
+<style>
+  media-gallery {
+    border: thick dotted green;
+    display: block;
+  }
+
+  .media-gallery {
+    background: var(--error, lightCyan);
+    padding: 1lh;
+  }
+
+  p { --error: pink; }
+</style>
+</media-gallery>
+</figure>
+<p>This finally solves the issue I've been having!</p>
+
+  
+</article>
 <hr>
-
-<p>
-  This works the same
-  if we use <code>@raw</code> in the loop,
-  and <code>@html</code> in the layout.
-</p>
+<p>The original issue is the same
+if we use <code>@raw</code> or <code>@html</code> in the layout --
+But the fix requires <code>raw</code> output.</p>
 </main>
   
 

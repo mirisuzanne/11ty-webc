@@ -15,3 +15,16 @@ there's a difficult eleventy/webc issue to solve:
 - But then any page data is only available when rendering _that page_,
   and any `webc` components relying on page data fail
   once we put that content in a loop or in pagination.
+
+**Solved**: I'm using markdown
+as a [preprocessor](https://www.11ty.dev/docs/config-preprocessors/)
+for `webC` templates.
+
+```js
+eleventyConfig.addPreprocessor("webMD", "webc",
+  (data, content) => {
+    return (data.md)
+      ? md.render(content || '')
+      : content;
+  });
+```

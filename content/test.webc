@@ -1,0 +1,26 @@
+---
+md: true
+as: raw
+layout: base
+title: test.webc
+gallery:
+- img: example/first.jpg
+  alt: We don't need to actually use images here
+- img: example/second.jpg
+  alt: Using page-specific data is all that matters
+- img: example/third.jpg
+  alt: In order to demonstrate this issue
+- img: example/fourth.jpg
+  alt: The media gallery concept is just one use-case
+tags: example
+---
+
+Since `data.md === true`,
+this `webc` file will pre-process as markdown first,
+before being rendered as webC.
+
+<figure>
+  <media-gallery :@from-data="this.gallery"></media-gallery>
+</figure>
+
+This finally solves the issue I've been having!

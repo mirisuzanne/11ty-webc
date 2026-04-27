@@ -7,12 +7,12 @@
 </head>
 <body>
   <nav>
-    <a href="/">home</a>
+    <a href="/">index.md</a>
+    <a href="/test/">test.webc</a>
     <a href="/loop/">loop</a>
   </nav>
   
-  <main><h1>This is a markdown file</h1>
-<p>The first issue is that components
+  <main><p>The first issue is that components
 with private <code>@</code>-prefixed attributes
 aren't recognized as HTML…</p>
 <p>&lt;media-gallery :@from-data="this.gallery"&gt;</p>
@@ -113,10 +113,10 @@ before webc gets ahold of it:</p>
   &lt;media-gallery :@from-data="this.gallery"&gt;&lt;/media-gallery&gt;
 &lt;/figure&gt;
 </code></pre>
-<p>It all works great!
-Until we access this same page
+<p>It all works great!</p>
+<p>…&nbsp;Until we access this same page
 inside a <a href="/loop/">loop</a>,
-there's no <code>gallery</code> data anyway!</p>
+there's no <code>this.gallery</code> data available.</p>
 </main>
 
 

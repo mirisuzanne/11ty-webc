@@ -7,7 +7,8 @@
 </head>
 <body>
   <nav>
-    <a href="/">home</a>
+    <a href="/">index.md</a>
+    <a href="/test/">test.webc</a>
     <a href="/loop/">loop</a>
   </nav>
   <main

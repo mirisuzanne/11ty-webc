@@ -1,5 +1,6 @@
 ---
 layout: base
+title: index.md
 gallery:
 - img: example/first.jpg
   alt: We don't need to actually use images here
@@ -11,8 +12,6 @@ gallery:
   alt: The media gallery concept is just one use-case
 tags: example
 ---
-
-# This is a markdown file
 
 The first issue is that components
 with private `@`-prefixed attributes
@@ -53,6 +52,8 @@ before webc gets ahold of it:
 ```
 
 It all works great!
-Until we access this same page
+
+… Until we access this same page
 inside a [loop](/loop/),
-there's no `gallery` data anyway!
+there's no `this.gallery` data available.
+
